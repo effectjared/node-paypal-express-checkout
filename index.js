@@ -70,6 +70,12 @@ Paypal.prototype.detail = function(token, payer, callback) {
 			callback(null, data, 0);
 			return;
 		}
+		
+		if (data.PAYMENTREQUEST_0_SHIPTOCOUNTRYCODE !== 'GB') {
+			callback('Invalid shipping country chosen')
+
+			return
+		}
 
 		var custom = data.CUSTOM.split('|');
 		var params = self.params();
